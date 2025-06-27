@@ -71,7 +71,7 @@ def get_user_inputs():
             help="Includes dividends from UAE companies, qualifying foreign subsidiaries, and certain participations."
         )
 
-        # Free Zone Split
+        # Free Zone Income Breakdown (only if applicable)
         qualifying_income = 0.0
         non_qualifying_income = 0.0
         if free_zone == "Yes" and qualifying_fz == "Yes":
@@ -92,4 +92,13 @@ def get_user_inputs():
         submitted = st.form_submit_button("Check Eligibility and Calculate Tax")
 
     return submitted, {
-        "entity_type": enti_
+        "entity_type": entity_type,
+        "free_zone": free_zone,
+        "qualifying_fz": qualifying_fz,
+        "exempt_type": exempt_type,
+        "revenue": revenue,
+        "deductions": deductions,
+        "exempt_income": exempt_income,
+        "qualifying_income": qualifying_income,
+        "non_qualifying_income": non_qualifying_income,
+    }
