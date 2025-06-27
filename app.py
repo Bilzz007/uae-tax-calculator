@@ -12,17 +12,18 @@ st.title("UAE Corporate Tax Calculator")
 # ---------------------- Input Form ---------------------- #
 submitted, user_inputs = get_user_inputs()
 
-# ---------------------- Tax Logic ----------------------- #
+# ---------------------- Eligibility Logic ---------------------- #
 if submitted:
     st.markdown("### 🧾 Eligibility Result")
 
-    # Exempt check
-    if user_inputs["exempt_type"]:
-        st.warning(f"❌ You are exempt from UAE Corporate Tax due to: {', '.join(user_inputs['exempt_type'])}.")
+    if not user_inputs["is_taxable_person"]:
+        st.warning("❌ You are not a Taxable Person under UAE Corporate Tax Law. No calculation applicable.")
+    elif user_inputs["exempt_type"]:
+        st.warning(f"❌ Exempt Person — based on Article 4 categories selected: {', '.join(user_inputs['exempt_type'])}. No corporate tax applies.")
     elif user_inputs["revenue"] <= 3_000_000:
-        st.info("✅ Small Business Relief applies (Revenue ≤ AED 3M). No corporate tax this period.")
+        st.info("✅ Eligible for Small Business Relief (Revenue ≤ AED 3M). Corporate tax is not applicable for this period.")
     else:
-        st.success("✅ Based on your inputs, corporate tax applies.")
+        st.success("✅ You are a Taxable Person. Proceeding with tax calculation...")
         result = calculate_tax(user_inputs)
 
         st.markdown("### 💼 Tax Summary")
