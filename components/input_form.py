@@ -8,7 +8,7 @@ def get_user_inputs():
 
         # Entity Type
         entity_type = st.selectbox(
-            "Entity Type ℹ️",
+            "Entity Type",
             ["Legal Entity", "Natural Person"],
             help="Legal Entity: company registered in UAE (e.g., LLC, PSC, Free Zone entity). "
                  "Natural Person: individual conducting business (e.g., freelancer)."
@@ -16,14 +16,14 @@ def get_user_inputs():
 
         # Free Zone
         free_zone = st.radio(
-            "Are you registered in a UAE Free Zone? ℹ️",
+            "Are you registered in a UAE Free Zone?",
             ["Yes", "No"],
             help="Free Zone entities may qualify for special tax benefits if they meet QFZ conditions. See Article 18."
         )
 
         # Qualifying Free Zone Person
         qualifying_fz = st.radio(
-            "Do you meet the conditions of a Qualifying Free Zone Person? ℹ️",
+            "Do you meet the conditions of a Qualifying Free Zone Person?",
             ["Yes", "No", "Not Applicable"],
             help="Qualifying FZ Persons must maintain UAE substance, earn qualifying income, "
                  "submit audited accounts, and follow transfer pricing rules."
@@ -31,7 +31,7 @@ def get_user_inputs():
 
         # Exemptions
         exempt_type = st.multiselect(
-            "Any of the following exemptions apply? ℹ️",
+            "Any of the following exemptions apply?",
             [
                 "Government Entity",
                 "Government Controlled Entity",
@@ -49,7 +49,7 @@ def get_user_inputs():
 
         # Revenue
         revenue = st.number_input(
-            "Total Revenue (AED) ℹ️",
+            "Total Revenue (AED)",
             min_value=0.0,
             step=1000.0,
             help="Gross business income for the financial year. Used to determine taxability and small business relief."
@@ -57,7 +57,7 @@ def get_user_inputs():
 
         # Deductions
         deductions = st.number_input(
-            "Deductible Expenses (AED) ℹ️",
+            "Deductible Expenses (AED)",
             min_value=0.0,
             step=100.0,
             help="Expenses incurred wholly for business purposes (e.g., salaries, rent). Must not be capital in nature."
@@ -65,25 +65,25 @@ def get_user_inputs():
 
         # Exempt Income
         exempt_income = st.number_input(
-            "Exempt Income (AED) ℹ️",
+            "Exempt Income (AED)",
             min_value=0.0,
             step=100.0,
             help="Includes dividends from UAE companies, qualifying foreign subsidiaries, and certain participations."
         )
 
-        # Free Zone Income Breakdown (only if applicable)
+        # Free Zone Income Breakdown
         qualifying_income = 0.0
         non_qualifying_income = 0.0
         if free_zone == "Yes" and qualifying_fz == "Yes":
             st.subheader("🏗️ Free Zone Income Breakdown")
             qualifying_income = st.number_input(
-                "Qualifying Income (0% Tax) ℹ️",
+                "Qualifying Income (0% Tax)",
                 min_value=0.0,
                 step=100.0,
                 help="Income from other Free Zone Persons or foreign customers under qualifying activities."
             )
             non_qualifying_income = st.number_input(
-                "Non-Qualifying Income (9% Tax) ℹ️",
+                "Non-Qualifying Income (9% Tax)",
                 min_value=0.0,
                 step=100.0,
                 help="Income from mainland UAE or non-qualifying sources. Taxed at standard 9%."
