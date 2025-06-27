@@ -15,5 +15,10 @@ def show_summary(inputs: dict, result: dict):
     st.metric("Taxable Income", f"AED {result['taxable_income']:,.2f}")
     st.metric("Corporate Tax Payable", f"AED {result['tax_payable']:,.2f}")
 
+    if inputs["free_zone"] == "Yes" and inputs["qualifying_fz"] == "Yes":
+        st.markdown("**📁 Free Zone Income Breakdown:**")
+        st.write(f"• Qualifying Income (0% Tax): AED {inputs['qualifying_income']:,.2f}")
+        st.write(f"• Non-Qualifying Income (9% Tax Slab Applies): AED {inputs['non_qualifying_income']:,.2f}")
+
     st.markdown("---")
-    st.markdown("**Note:** This tool is based on publicly available UAE tax laws and is for informational purposes only.")
+    st.markdown("**Note:** This tool is based on UAE Tax Law and is for guidance only. Always consult your tax advisor.")
