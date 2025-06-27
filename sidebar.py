@@ -27,6 +27,14 @@ def get_user_inputs():
     deductions = st.sidebar.number_input("Deductible Expenses (AED)", min_value=0.0, step=100.0)
     exempt_income = st.sidebar.number_input("Exempt Income (AED)", min_value=0.0, step=100.0)
 
+    qualifying_income = 0.0
+    non_qualifying_income = 0.0
+
+    if free_zone == "Yes" and qualifying_fz == "Yes":
+        st.sidebar.subheader("🏗️ Free Zone Income Breakdown")
+        qualifying_income = st.sidebar.number_input("Qualifying Income (0% Tax)", min_value=0.0, step=100.0)
+        non_qualifying_income = st.sidebar.number_input("Non-Qualifying Income (9% Tax)", min_value=0.0, step=100.0)
+
     return {
         "entity_type": entity_type,
         "free_zone": free_zone,
@@ -34,5 +42,7 @@ def get_user_inputs():
         "exempt_type": exempt_type,
         "revenue": revenue,
         "deductions": deductions,
-        "exempt_income": exempt_income
+        "exempt_income": exempt_income,
+        "qualifying_income": qualifying_income,
+        "non_qualifying_income": non_qualifying_income
     }
