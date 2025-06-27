@@ -25,7 +25,7 @@ def get_user_inputs():
     revenue = st.sidebar.number_input("Total Revenue (AED)", min_value=0.0, step=1000.0)
     deductions = st.sidebar.number_input("Deductible Expenses (AED)", min_value=0.0, step=100.0)
     exempt_income = st.sidebar.number_input("Exempt Income (AED)", min_value=0.0, step=100.0)
-    small_business_relief = st.sidebar.checkbox("Apply for Small Business Relief (Revenue ≤ AED 3M)?")
+    small_business_relief = inputs["revenue"] <= 3_000_000  # auto
 
     return {
         "entity_type": entity_type,
