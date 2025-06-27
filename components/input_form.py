@@ -5,8 +5,7 @@ from components.precheck_taxable_person import taxable_person_precheck
 from components.business_info_section import get_business_info
 from components.financial_info_section import get_financial_info
 
-# ✅ DEBUG marker to verify correct file is running
-st.info("🧠 Modular input form loaded (components/input_form.py)")
+st.info("🧠 Modular input_form.py loaded!")
 
 def get_user_inputs():
     # Pre-check for Taxable Person (Article 11)
@@ -15,12 +14,12 @@ def get_user_inputs():
     with st.form("tax_input_form"):
         st.markdown("### 📋 Business and Financial Inputs")
 
-        # Business Info Section (Free Zone, Exemptions)
+        # Business Info Section
         free_zone, qualifying_fz, exempt_type = get_business_info()
 
         st.divider()
 
-        # Financials (revenue, deductions, etc.)
+        # Financial Info Section
         revenue, deductions, exempt_income, qualifying_income, non_qualifying_income = get_financial_info(
             free_zone, qualifying_fz
         )
