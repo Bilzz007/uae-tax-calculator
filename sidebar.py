@@ -12,6 +12,7 @@ def get_user_inputs():
         "Select any exemption that applies to you (if any):",
         [
             "Government Entity",
+            "Government Controlled Entity",
             "Extractive Business",
             "Non-Extractive Natural Resource Business",
             "Qualifying Public Benefit Entity",
@@ -25,7 +26,6 @@ def get_user_inputs():
     revenue = st.sidebar.number_input("Total Revenue (AED)", min_value=0.0, step=1000.0)
     deductions = st.sidebar.number_input("Deductible Expenses (AED)", min_value=0.0, step=100.0)
     exempt_income = st.sidebar.number_input("Exempt Income (AED)", min_value=0.0, step=100.0)
-    small_business_relief = inputs["revenue"] <= 3_000_000  # auto
 
     return {
         "entity_type": entity_type,
@@ -34,6 +34,5 @@ def get_user_inputs():
         "exempt_type": exempt_type,
         "revenue": revenue,
         "deductions": deductions,
-        "exempt_income": exempt_income,
-        "small_business_relief": small_business_relief
+        "exempt_income": exempt_income
     }
