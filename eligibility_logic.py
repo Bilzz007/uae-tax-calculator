@@ -13,12 +13,12 @@ def check_eligibility(inputs: dict) -> dict:
         if inputs["qualifying_fz"] == "Yes":
             return {
                 "is_taxable": True,
-                "message": "✅ Qualifying Free Zone Person: 0% on qualifying income, 9% on others (Article 18)."
+                "message": "✅ Qualifying Free Zone Person: 0% on qualifying income, 9% on non-qualifying income (Article 18)."
             }
         elif inputs["qualifying_fz"] == "No":
             return {
                 "is_taxable": True,
-                "message": "ℹ️ Free Zone Person (not qualifying). Standard tax applies."
+                "message": "ℹ️ Free Zone Person (not qualifying). Standard tax rates apply (0%/9%)."
             }
 
     # Small Business Relief (Article 21)
